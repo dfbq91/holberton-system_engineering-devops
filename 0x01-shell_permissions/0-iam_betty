@@ -1,0 +1,2 @@
+#!/bin/bash
+usermod -u Betty 1000
