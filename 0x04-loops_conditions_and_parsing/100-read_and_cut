@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# This script display some elements of /etc/passwd
+input="/etc/passwd"
+$line
+while IFS= read -r line
+do
+    cut -d ":" -f1,3,6 $input
+done < "$input"
