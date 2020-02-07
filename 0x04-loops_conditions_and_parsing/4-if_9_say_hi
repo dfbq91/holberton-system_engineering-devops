@@ -7,7 +7,7 @@ do
     echo "$string"
     if [ $counter -eq 9 ]
     then
-	echo "hi"
+	echo "Hi"
     fi
     ((counter++))
 done
