@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# This script display "Holberton School" 10 times
+string="Holberton School"
+counter=1
+until [ $counter -gt 10 ]
+do
+    echo "$string"
+    ((counter++))
+done
