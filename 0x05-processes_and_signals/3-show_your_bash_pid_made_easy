@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Bash script that displays PID of bash process in 2 columns
+pgrep -l bash
