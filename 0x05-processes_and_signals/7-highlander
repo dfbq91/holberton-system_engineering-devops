@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Bash script that kill a process given a path
-trap I_am_invincible!! SIGINT
+trap "echo I am invincible!!" SIGTERM
 while true
 do
     echo "To infinity and beyond"
