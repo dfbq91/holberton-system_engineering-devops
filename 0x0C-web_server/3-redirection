@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Install nginx on a web server on port 80 and
+# configure it to make a redirecting to another page.
+sudo apt-get update
+sudo apt-get install -y nginx
+# read a string from std input and write to std output and index file
+echo "Holberton School my people" | sudo tee /var/www/html/index.nginx-debian.html
+sed -i "/listen 80 default_server/a rewrite ^/redirect_me https://www.lasillavacia.com permanent;" /etc/nginx/sites-available/default
+service nginx restart
