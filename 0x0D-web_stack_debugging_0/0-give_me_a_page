@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# fix error message "curl: (52) Empty reply from server".
+sudo /etc/init.d/apache2 restart
+
