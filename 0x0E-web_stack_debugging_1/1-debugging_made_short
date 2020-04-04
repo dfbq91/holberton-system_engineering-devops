@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 # modify 8080 nginx listening port to 80
 sed -i 's/8080 default/80 default/' /etc/nginx/sites-enabled/default
-service nginx restart
-sudo pkill -f nginx
+service nginx start
+kill "$(pgrep -f nginx | head -1)"
