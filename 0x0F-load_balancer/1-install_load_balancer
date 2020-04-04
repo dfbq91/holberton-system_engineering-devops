@@ -3,14 +3,13 @@
 sudo apt-get update
 sudo apt-get install software-properties-common
 sudo apt-get -y install haproxy=1.6.\*
-# Get permissions to edit haproxy
-sudo chmod 777 /etc/default/haproxy
+sudo apt-get update
 # We need to enable HAProxy to be started by the init script.
 echo "ENABLED=1" >> /etc/default/haproxy
 # Frontend settings
 front="\\\nfrontend http_front\n \tbind *:80\n \tmode http\n \tdefault_backend http_back\n"
 # Backed settings
-back="\\backend http_back\n \tbalance roundrobin\n \tserver 1198-web-01 35.196.233.196:80 check\n \tserver 1198-web-02 35.237.182.135:80 check"
+back="\\backend http_back\n \tbalance roundrobin\n \tserver 1198-web-01 34.74.97.226:80 check\n \tserver 1198-web-02 18.209.18.155:80 check"
 sudo sed -i "\$a$front\n$back" /etc/haproxy/haproxy.cfg
 
 sudo service haproxy start
