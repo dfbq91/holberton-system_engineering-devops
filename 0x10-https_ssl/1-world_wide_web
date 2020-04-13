@@ -16,5 +16,5 @@ then
     infodomain $1 "web-02"
 elif [ "$#" -gt 1 ]
 then
-    dig_ip $1 $2
+    infodomain $1 $2
 fi
