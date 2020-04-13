@@ -1,17 +1,20 @@
 #!/usr/bin/env bash 
 # Show information about domain and subdomains and their IP's
 
-getdomain () {
-    dig "$1" | grep -A1 'ANSWER SECTION:' | tail -n 1 | cut -d'A' -f2 | ip="$(cut -d$'\t' -f2-)" | awk BEGIN'{ print "The subdomain " $2 "is a A record and points to " "$ip" }'
+infodomain()
+{
+    ip_output=$(dig "$2.$1" | grep -A1 'ANSWER SECTION:' | tail -n1)
+    # ip_output is the output of dig and $1 is the subdomain, which is used in awk as $6
+    echo "$ip_output $2" | awk '{ print "The subdomain " $6 " is a " $4 " record and points to " $5 }'
 }
 
-# When only the parameter domain is provided, display information for its subdomains www, lb-01, web-01 and web-02 - in this specific order
 if [ "$#" -eq 1 ]
 then
-    getdomain "www.$1" "www"
-    getdomain "lb-01.$1" "lb-01"
-    getdomain "web-01.$1" "web-01"
-    getdomain "web-02.$1" "web-02"
-else
-    getdomain "$2.$1" "$2"
+    infodomain $1 "www"
+    infodomain $1 "lb-01"
+    infodomain $1 "web-01"
+    infodomain $1 "web-02"
+elif [ "$#" -gt 1 ]
+then
+    dig_ip $1 $2
 fi
