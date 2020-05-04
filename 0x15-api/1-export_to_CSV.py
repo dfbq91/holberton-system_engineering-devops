@@ -21,8 +21,9 @@ if __name__ == "__main__":
     filename = "{}.csv".format(id)
 
     # Open and write into .csv file
-    with open(filename, 'w', encode='utf-8') as file:
+    with open(filename, 'w') as file:
         writer = csv.writer(file, quoting=csv.QUOTE_ALL)
         for tasks in jsoned_todos:
             if id == tasks.get('userId'):
-                writer.writerow([id, name, tasks.get('completed'), tasks.get('title')])
+                writer.writerow([id, name, tasks.get('completed'),
+                                 tasks.get('title')])
