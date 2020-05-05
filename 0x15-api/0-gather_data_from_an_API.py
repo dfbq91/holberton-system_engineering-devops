@@ -18,11 +18,11 @@ if __name__ == "__main__":
 
     # Get name of the employee
     name = jsoned_user.get('name')
-    id = jsoned_user.get('id')
+    id = sys.argv[1]
 
     # Get total and done tasks number
     for tasks in jsoned_todos:
-        if id == tasks.get('userId'):
+        if int(id) == tasks.get('userId'):
             total_tasks += 1
             if tasks.get('completed') is True:
                 done_tasks += 1
@@ -32,5 +32,5 @@ if __name__ == "__main__":
 
     # Completed tasks
     for tasks in jsoned_todos:
-        if id == tasks.get('userId') and tasks.get('completed') is True:
+        if int(id) == tasks.get('userId') and tasks.get('completed') is True:
             print("\t{}".format(tasks.get('title')))
