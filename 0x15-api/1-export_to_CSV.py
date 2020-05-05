@@ -17,13 +17,13 @@ if __name__ == "__main__":
 
     # Get name of the employee
     name = jsoned_user.get('name')
-    id = jsoned_user.get('id')
+    id = argv[1]
     filename = "{}.csv".format(id)
 
     # Open and write into .csv file
     with open(filename, 'w', newline='') as file:
         writer = csv.writer(file, quoting=csv.QUOTE_ALL)
         for tasks in jsoned_todos:
-            if id == tasks.get('userId'):
+            if int(id) == tasks.get('userId'):
                 writer.writerow([int(id), name, tasks.get('completed'),
                                  tasks.get('title')])
