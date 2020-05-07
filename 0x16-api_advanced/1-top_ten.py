@@ -12,6 +12,6 @@ def top_ten(subreddit):
     if r.status_code == 200:
         jsoned_r = r.json()
         for post_number in range(1, 11):
-            print(jsoned_r['data']['children'][post_number]['data']['title'])
+            print(jsoned_r.get('data').get('children')[post_number].get('data').get('title'))
     else:
         print(None)
