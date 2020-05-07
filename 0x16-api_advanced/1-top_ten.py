@@ -14,10 +14,10 @@ def top_ten(subreddit):
         if r_jsoned.get('data').get('children') is None:
             print(None)
         for post_number in range(1, 11):
-            try:
+            if len(r_jsoned.get('data').get('children')) < 10:
+                print(None)
+            else:
                 print(r_jsoned.get('data').get('children')[post_number].
                       get('data').get('title'))
-            except Exception:
-                print(None)
     else:
         print(None)
