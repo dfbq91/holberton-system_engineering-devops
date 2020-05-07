@@ -13,7 +13,7 @@ def top_ten(subreddit):
     if r.status_code == 200:
         if r_jsoned.get('data').get('children') is None:
             print(None)
-        for post_number in range(1, 11):
+        for post_number in range(0, 10):
             if len(r_jsoned.get('data').get('children')) < 10:
                 print(None)
             else:
