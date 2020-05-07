@@ -9,9 +9,12 @@ def top_ten(subreddit):
     url = 'https://www.reddit.com/r/{}/hot.json'.format(subreddit)
     headers = {'User-Agent': 'My name is Diego'}
     r = requests.get(url, headers=headers, allow_redirects=False)
+    r_jsoned = r.json()
     if r.status_code == 200:
-        jsoned_r = r.json()
+        if r_jsoned.get('data').get('children') is None:
+            print(None)
         for post_number in range(1, 11):
-            print(jsoned_r.get('data').get('children')[post_number].get('data').get('title'))
+            print(r_jsoned.get('data').get('children')[post_number].
+                  get('data').get('title'))
     else:
         print(None)
