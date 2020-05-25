@@ -45,3 +45,24 @@ Content-Type: text/html
 - The file where the error was found was in wp settings.  (10:18 am)
 
 - Fixed the printing error in the file path. The system was put back online at 10:20 am. The correction of the error took 18 minutes. (10:20 am)
+
+## Root cause and resolution
+
+The cause of the error was in an invalid line containing `/class-wp-locale.phpp` in the file `/var/www/html/wp-settings.php`.
+
+The first clue was obtained by using strace and Curl to localhost from another terminal, which returned quite a large output, but there was one part that attracted attention:
+
+`lstat("/var/www/html/wp-includes/class-wp-locale.phpp", 0x2ggcde25dje0) = -1 ENOENT (No such file or directory)`
+
+-1 as result allow us to see that this file class-wp-locale did not exist in that moment.
+
+To further refine the track, wordpress debug mode was activated, which allowed to find the file where the line detected by strace was located.
+
+The solution was to modify `/var/www/html/wp-includes/class-wp-locale.phpp` to `/var/www/html/wp-includes/class-wp-locale.php`.
+
+## Corrective and preventive measures:
+
+The file writing error was probably caused by mental and physical exhaustion. As a preventive measure, it is important to follow up on the exhaustion of the engineers to prevent them from falling into this type of error.
+
+Sometimes, worker-related measures are useful. Technical measures can help, but are not the best option in all cases. For example:
+![](https://github.com/dfbq91/holberton-system_engineering-devops/blob/master/0x19-postmortem/wordpress-meme.jpg)
